@@ -1,7 +1,10 @@
+import 'package:bookly/constuns.dart';
 import 'package:bookly/core/utilty/assits.dart';
+import 'package:bookly/features/home/presintation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 class SplashViweBody extends StatefulWidget {
   const SplashViweBody({super.key});
@@ -17,14 +20,9 @@ class _SplashViweBodyState extends State<SplashViweBody>
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5));
-    slideAnimation = Tween<Offset>(begin: const Offset(0, 10), end: Offset.zero)
-        .animate(animationController);
-    animationController.forward();
-    slideAnimation.addListener(() {
-      setState(() {});
-    });
+    inatialSlidingAnimation();
+
+    navigateTo();
   }
 
   @override
@@ -51,5 +49,24 @@ class _SplashViweBodyState extends State<SplashViweBody>
         )
       ],
     );
+  }
+
+  void navigateTo() {
+    Future.delayed(const Duration(seconds: 6), () {
+      Get.to(() => const HomeScreen(),
+          transition: Transition.leftToRightWithFade,
+          duration: transactionDuration);
+    });
+  }
+
+  void inatialSlidingAnimation() {
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 4));
+    slideAnimation = Tween<Offset>(begin: const Offset(0, 10), end: Offset.zero)
+        .animate(animationController);
+    animationController.forward();
+    slideAnimation.addListener(() {
+      setState(() {});
+    });
   }
 }
