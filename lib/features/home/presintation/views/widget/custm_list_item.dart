@@ -10,7 +10,7 @@ class CustomItem extends StatelessWidget {
       aspectRatio: 2.7 / 4,
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.red,
             borderRadius: BorderRadius.circular(16),
             image:
                 const DecorationImage(image: AssetImage(AssitsData.testItem))),
