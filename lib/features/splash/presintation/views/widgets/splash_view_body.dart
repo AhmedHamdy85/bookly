@@ -4,7 +4,7 @@ import 'package:bookly/features/home/presintation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViweBody extends StatefulWidget {
   const SplashViweBody({super.key});
@@ -53,9 +53,10 @@ class _SplashViweBodyState extends State<SplashViweBody>
 
   void navigateTo() {
     Future.delayed(const Duration(seconds: 6), () {
-      Get.to(() => const HomeScreen(),
-          transition: Transition.leftToRightWithFade,
-          duration: transactionDuration);
+      //   Get.to(() => const HomeScreen(),
+      //       transition: Transition.leftToRightWithFade,
+      //       duration: transactionDuration);
+      GoRouter.of(context).push('/homeViwe');
     });
   }
 
