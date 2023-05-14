@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../constuns.dart';
 import '../../../../../../core/utilty/assits.dart';
 import '../../../../../../core/utilty/styles.dart';
+import 'book_rating.dart';
 
 class BestSellerListViweItem extends StatelessWidget {
   const BestSellerListViweItem({super.key});
@@ -81,37 +82,6 @@ class BestSellerListViweItem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class BookRating extends StatelessWidget {
-  const BookRating({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        const Icon(
-          FontAwesomeIcons.solidStar,
-          color: Color(0xffFFDD4F),
-        ),
-        const SizedBox(
-          width: 6.3,
-        ),
-        const Text(
-          '4.8',
-          style: Styles.textStyle16,
-        ),
-        const SizedBox(
-          width: 5,
-        ),
-        Text(
-          '(245565)',
-          style: Styles.textStyle14.copyWith(color: const Color(0xff707070)),
-        )
-      ],
     );
   }
 }
