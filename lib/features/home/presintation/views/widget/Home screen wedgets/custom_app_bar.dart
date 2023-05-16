@@ -1,5 +1,6 @@
 import 'package:bookly/core/utilty/assits.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -16,7 +17,9 @@ class CustomAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).push('/searchviwe');
+              },
               icon: const Icon(
                 Icons.search_rounded,
                 size: 30,

@@ -14,7 +14,7 @@ class BestSellerListViwe extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) => const Padding(
         padding: EdgeInsets.only(bottom: 20),
-        child: BestSellerListViweItem(),
+        child: BookListViweItem(),
       ),
     );
   }
