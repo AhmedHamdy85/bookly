@@ -29,36 +29,33 @@ class AccessInfo extends Equatable {
   });
 
   factory AccessInfo.fromJson(Map<String, dynamic> json) => AccessInfo(
-        country: json['country']?.toString(),
-        viewability: json['viewability']?.toString(),
-        embeddable: json['embeddable']?.toString().contains("true"),
-        publicDomain: json['publicDomain']?.toString().contains("true"),
-        textToSpeechPermission: json['textToSpeechPermission']?.toString(),
+        country: json['country'] as String?,
+        viewability: json['viewability'] as String?,
+        embeddable: json['embeddable'] as bool?,
+        publicDomain: json['publicDomain'] as bool?,
+        textToSpeechPermission: json['textToSpeechPermission'] as String?,
         epub: json['epub'] == null
             ? null
-            : Epub.fromJson(Map<String, dynamic>.from(json['epub'])),
+            : Epub.fromJson(json['epub'] as Map<String, dynamic>),
         pdf: json['pdf'] == null
             ? null
-            : Pdf.fromJson(Map<String, dynamic>.from(json['pdf'])),
-        webReaderLink: json['webReaderLink']?.toString(),
-        accessViewStatus: json['accessViewStatus']?.toString(),
-        quoteSharingAllowed:
-            json['quoteSharingAllowed']?.toString().contains("true"),
+            : Pdf.fromJson(json['pdf'] as Map<String, dynamic>),
+        webReaderLink: json['webReaderLink'] as String?,
+        accessViewStatus: json['accessViewStatus'] as String?,
+        quoteSharingAllowed: json['quoteSharingAllowed'] as bool?,
       );
 
   Map<String, dynamic> toJson() => {
-        if (country != null) 'country': country,
-        if (viewability != null) 'viewability': viewability,
-        if (embeddable != null) 'embeddable': embeddable,
-        if (publicDomain != null) 'publicDomain': publicDomain,
-        if (textToSpeechPermission != null)
-          'textToSpeechPermission': textToSpeechPermission,
-        if (epub != null) 'epub': epub?.toJson(),
-        if (pdf != null) 'pdf': pdf?.toJson(),
-        if (webReaderLink != null) 'webReaderLink': webReaderLink,
-        if (accessViewStatus != null) 'accessViewStatus': accessViewStatus,
-        if (quoteSharingAllowed != null)
-          'quoteSharingAllowed': quoteSharingAllowed,
+        'country': country,
+        'viewability': viewability,
+        'embeddable': embeddable,
+        'publicDomain': publicDomain,
+        'textToSpeechPermission': textToSpeechPermission,
+        'epub': epub?.toJson(),
+        'pdf': pdf?.toJson(),
+        'webReaderLink': webReaderLink,
+        'accessViewStatus': accessViewStatus,
+        'quoteSharingAllowed': quoteSharingAllowed,
       };
 
   @override

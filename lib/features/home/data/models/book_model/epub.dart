@@ -2,20 +2,17 @@ import 'package:equatable/equatable.dart';
 
 class Epub extends Equatable {
   final bool? isAvailable;
-  final String? acsTokenLink;
 
-  const Epub({this.isAvailable, this.acsTokenLink});
+  const Epub({this.isAvailable});
 
   factory Epub.fromJson(Map<String, dynamic> json) => Epub(
-        isAvailable: json['isAvailable']?.toString().contains("true"),
-        acsTokenLink: json['acsTokenLink']?.toString(),
+        isAvailable: json['isAvailable'] as bool?,
       );
 
   Map<String, dynamic> toJson() => {
-        if (isAvailable != null) 'isAvailable': isAvailable,
-        if (acsTokenLink != null) 'acsTokenLink': acsTokenLink,
+        'isAvailable': isAvailable,
       };
 
   @override
-  List<Object?> get props => [isAvailable, acsTokenLink];
+  List<Object?> get props => [isAvailable];
 }

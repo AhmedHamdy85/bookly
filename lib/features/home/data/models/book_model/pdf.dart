@@ -7,13 +7,13 @@ class Pdf extends Equatable {
   const Pdf({this.isAvailable, this.acsTokenLink});
 
   factory Pdf.fromJson(Map<String, dynamic> json) => Pdf(
-        isAvailable: json['isAvailable']?.toString().contains("true"),
-        acsTokenLink: json['acsTokenLink']?.toString(),
+        isAvailable: json['isAvailable'] as bool?,
+        acsTokenLink: json['acsTokenLink'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
-        if (isAvailable != null) 'isAvailable': isAvailable,
-        if (acsTokenLink != null) 'acsTokenLink': acsTokenLink,
+        'isAvailable': isAvailable,
+        'acsTokenLink': acsTokenLink,
       };
 
   @override

@@ -7,13 +7,13 @@ class ReadingModes extends Equatable {
   const ReadingModes({this.text, this.image});
 
   factory ReadingModes.fromJson(Map<String, dynamic> json) => ReadingModes(
-        text: json['text']?.toString().contains("true"),
-        image: json['image']?.toString().contains("true"),
+        text: json['text'] as bool?,
+        image: json['image'] as bool?,
       );
 
   Map<String, dynamic> toJson() => {
-        if (text != null) 'text': text,
-        if (image != null) 'image': image,
+        'text': text,
+        'image': image,
       };
 
   @override
