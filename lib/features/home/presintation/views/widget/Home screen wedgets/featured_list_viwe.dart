@@ -1,5 +1,10 @@
+import 'package:bookly/core/widgets/custom_erorr_wedget.dart';
+import 'package:bookly/features/home/presintation/manager/features_book_cubit/features_book_cubit.dart';
+import 'package:bookly/features/home/presintation/manager/features_book_cubit/features_book_states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../core/widgets/custom_loading_indicator.dart';
 import 'custm_list_item.dart';
 
 class ItemListView extends StatelessWidget {
@@ -7,18 +12,31 @@ class ItemListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.3,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const Padding(
-            padding: EdgeInsets.only(right: 8),
-            child: CustomItem(),
-          );
-        },
-        itemCount: 10,
-      ),
-    );
+    return BlocBuilder<FeaturedBooksCubit, FeaturesBooksStates>(
+        builder: (context, state) {
+      if (state is FeaturesBookSuccesState) {
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.3,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: CustomItem(
+                  imageUrl: state.books[index].volumeInfo.imageLinks!.thumbnail,
+                ),
+              );
+            },
+            itemCount: state.books.length,
+          ),
+        );
+      } else if (state is FeaturesBookErorrState) {
+        return CustomErorrWidget(
+          erorrMessage: state.erorr,
+        );
+      } else {
+        return const CustomLoadingIndicator();
+      }
+    });
   }
 }

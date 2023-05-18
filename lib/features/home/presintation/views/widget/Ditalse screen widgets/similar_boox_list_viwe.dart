@@ -14,7 +14,10 @@ class SimilarBooksListViwe extends StatelessWidget {
         itemBuilder: (context, index) {
           return const Padding(
             padding: EdgeInsets.only(right: 5),
-            child: CustomItem(),
+            child: CustomItem(
+              imageUrl:
+                  'https://th.bing.com/th/id/OIP.avb9nDfw3kq7NOoP0grM4wHaEK?pid=ImgDet&rs=1',
+            ),
           );
         },
         itemCount: 10,
