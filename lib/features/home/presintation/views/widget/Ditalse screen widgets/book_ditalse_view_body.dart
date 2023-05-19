@@ -1,5 +1,6 @@
 import 'package:bookly/core/utilty/styles.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
+import 'package:bookly/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly/features/home/presintation/views/widget/Home%20screen%20wedgets/custm_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,8 +12,8 @@ import 'dook_detalise_app_bar.dart';
 import 'similar_boox_list_viwe.dart';
 
 class BookDetalisViewBody extends StatelessWidget {
-  const BookDetalisViewBody({super.key});
-
+  const BookDetalisViewBody({super.key, required this.book});
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -26,26 +27,28 @@ class BookDetalisViewBody extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.2),
-            child: const Padding(
-              padding: EdgeInsets.only(right: 30),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 30),
               child: CustomItem(
-                imageUrl:
-                    'https://th.bing.com/th/id/OIP.avb9nDfw3kq7NOoP0grM4wHaEK?pid=ImgDet&rs=1',
+                imageUrl: book.volumeInfo.imageLinks!.smallThumbnail,
               ),
             ),
           ),
           const SizedBox(
-            height: 43,
+            height: 38,
           ),
-          const Text(
-            'The Jurgle Book',
-            style: Styles.textStyle30,
+          Text(
+            '${book.volumeInfo.title}',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Styles.textStyle30.copyWith(fontSize: 20),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 6,
           ),
           Text(
-            'Rudyard Kipling',
+            book.volumeInfo.authors![0],
             style: Styles.textStyle18.copyWith(
               color: Colors.white.withOpacity(0.7),
               fontStyle: FontStyle.italic,
@@ -55,9 +58,9 @@ class BookDetalisViewBody extends StatelessWidget {
           const SizedBox(
             height: 18,
           ),
-          const BookRating(
-            rating: 4,
-            count: 5,
+          BookRating(
+            rating: book.volumeInfo.averageRating ?? 0,
+            count: book.volumeInfo.ratingsCount ?? 0,
           ),
           const SizedBox(
             height: 37,

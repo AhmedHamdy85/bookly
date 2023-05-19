@@ -3,6 +3,7 @@ import 'package:bookly/features/home/presintation/manager/features_book_cubit/fe
 import 'package:bookly/features/home/presintation/manager/features_book_cubit/features_book_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/widgets/custom_loading_indicator.dart';
 import 'custm_list_item.dart';
@@ -22,8 +23,15 @@ class ItemListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(right: 8),
-                child: CustomItem(
-                  imageUrl: state.books[index].volumeInfo.imageLinks!.thumbnail,
+                child: InkWell(
+                  onTap: () {
+                    GoRouter.of(context)
+                        .push('/BookDetalseViwe', extra: state.books[index]);
+                  },
+                  child: CustomItem(
+                    imageUrl:
+                        state.books[index].volumeInfo.imageLinks!.thumbnail,
+                  ),
                 ),
               );
             },
