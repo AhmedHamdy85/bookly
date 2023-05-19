@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/presintation/views/widget/Home%20screen%20wedgets/custm_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -5,36 +6,27 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../constuns.dart';
 import '../../../../../../core/utilty/assits.dart';
 import '../../../../../../core/utilty/styles.dart';
+import '../../../../data/models/book_model/book_model.dart';
 import 'book_rating.dart';
 
 class BookListViweItem extends StatelessWidget {
-  const BookListViweItem({super.key});
-
+  const BookListViweItem({
+    super.key,
+    required this.book,
+  });
+  final BookModel book;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push('/BookDetalseViwe');
+        GoRouter.of(context).push('/BookDetalseViwe', extra: book);
       },
       child: SizedBox(
         height: 125,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AspectRatio(
-              aspectRatio: 2.5 / 4,
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(8),
-                    image: const DecorationImage(
-                        image: AssetImage(AssitsData.testItem),
-                        fit: BoxFit.fill)),
-                child: Image.asset(
-                  AssitsData.testItem,
-                ),
-              ),
-            ),
+            CustomItem(imageUrl: book.volumeInfo.imageLinks!.thumbnail),
             const SizedBox(
               width: 30,
             ),
@@ -45,7 +37,7 @@ class BookListViweItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      'Harry Boter and The Goblet of fire',
+                      book.volumeInfo.title!,
                       style: Styles.textStyle20.copyWith(
                         fontFamily: kGTSectrafine,
                       ),
@@ -56,8 +48,8 @@ class BookListViweItem extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  const Text(
-                    'J.K Rowling',
+                  Text(
+                    book.volumeInfo.authors![0],
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(
@@ -67,12 +59,15 @@ class BookListViweItem extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          '19.99 €',
+                          'Free',
                           style: Styles.textStyle20
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                         const Spacer(),
-                        const BookRating(),
+                        BookRating(
+                          rating: book.volumeInfo.averageRating ?? 0,
+                          count: book.volumeInfo.ratingsCount ?? 0,
+                        ),
                       ],
                     ),
                   ),
