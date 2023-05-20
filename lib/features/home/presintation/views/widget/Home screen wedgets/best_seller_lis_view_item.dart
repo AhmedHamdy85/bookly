@@ -26,7 +26,9 @@ class BookListViweItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomItem(imageUrl: book.volumeInfo.imageLinks!.thumbnail),
+            CustomItem(
+                imageUrl: book.volumeInfo.imageLinks?.thumbnail ??
+                    'https://th.bing.com/th/id/OIP.AC9frN1qFnn-I2JCycN8fwHaEK?pid=ImgDet&rs=1'),
             const SizedBox(
               width: 30,
             ),
@@ -37,7 +39,7 @@ class BookListViweItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      book.volumeInfo.title!,
+                      book.volumeInfo.title ?? 'programing',
                       style: Styles.textStyle20.copyWith(
                         fontFamily: kGTSectrafine,
                       ),
@@ -49,7 +51,7 @@ class BookListViweItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    book.volumeInfo.authors![0],
+                    book.volumeInfo.authors?[0] ?? 'jhfgty',
                     style: Styles.textStyle14,
                   ),
                   const SizedBox(

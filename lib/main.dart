@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               NewsetBooksCubit(getIt.get<HomeRepoImpl>())..getNewsetBooks(),
         ),
       ],
-      child: MaterialApp.router(
+      child: MaterialApp.router( 
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

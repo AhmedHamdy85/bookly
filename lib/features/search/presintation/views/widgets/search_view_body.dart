@@ -12,12 +12,12 @@ class SearchViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(30),
       child: Column(
-        children: const [
+        children: [
           CustomSearchTextFiled(),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Expanded(child: SearchResultListView())
+          const Expanded(child: SearchResultListView())
         ],
       ),
     );
